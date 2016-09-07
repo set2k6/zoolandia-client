@@ -1,0 +1,7 @@
+<h1>{{ title }}</h1>
+
+<ul>
+    <li ng-repeat="resource in employees">
+      <a href="/#/employees/{{ resource.id }}">{{ resource.first_name }} {{ resource.last_name }}</a>
+    </li>
+</ul>

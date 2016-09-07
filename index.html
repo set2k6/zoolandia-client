@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Zoolandia</title>
+    <link rel="stylesheet" href="">
+  </head>
+  <body>
+    <div ng-app="Zoolandia">
+      <div ng-view></div>
+    </div>
+
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/angular-route/angular-route.min.js"></script>
+    <script src="/app/app.js"></script>
+
+    <script src="/app/landing/landing.config.js"></script>
+    <script src="/app/landing/landingCtrl.js"></script>
+
+    <script src="/app/employees/employees.config.js"></script>
+    <script src="/app/employees/employeeCtrl.js"></script>
+    <script src="/app/employees/employeeDetailCtrl.js"></script>
+
+    <script src="/app/habitats/habitats.config.js"></script>
+    <script src="/app/habitats/habitatsCtrl.js"></script>
+    <script src="/app/habitats/habitatDetailCtrl.js"></script>
+
+    <script src="/app/animals/animals.config.js"></script>
+    <script src="/app/animals/animalsCtrl.js"></script>
+    <script src="/app/animals/animalDetailCtrl.js"></script>
+  </body>
+</html>
