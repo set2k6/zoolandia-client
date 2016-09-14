@@ -8,62 +8,45 @@ angular.module("Zoolandia")
     '$timeout',
     '$routeParams',
     function ($scope, $http, RootFactory, $timeout, $routeParams) {
-      $scope.title = "I'm the ticket creation page"
       $scope.habitats = null;
       $scope.users = null;
       $scope.root = null;
 
-      let logError = (err) => console.error("error", err);
-
+      /*
+        Get the root resources of the API
+       */
       RootFactory.getApiRoot()
         .then(
           root => {
             $scope.root = root;
             return $http.get(root.habitats)
-          },
-          logError
+          }, console.error
         )
+        // Store all habitats, and retrieve users
         .then(
           res => {
             $scope.habitats = res.data;
             return $http.get($scope.root.users);
-          },
-          logError
+          }, console.error
         )
-        .then(
-          res => {
-            $scope.users = res.data;
-            $timeout();
-          },
-          logError
-        );
+        // Store users
+        .then(res => $scope.users = res.data, console.error);
+
 
       $scope.purchase = () => {
-
-        console.log("$scope.selectedUser", $scope.selectedUser);
-        console.log("$scope.selectedHabitat", $scope.selectedHabitat);
-
+        // Set the authorization headers on the request
+        $http.defaults.headers.common.Authorization = 'Basic ' + RootFactory.credentials();
 
         $http({
           url: $scope.root.tickets,
           method: "POST",
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded"
-          },
           data: {
-            "user": $scope.selectedUser.id,
-            "habitat": $scope.selectedHabitat.id
+            "owner": $scope.selectedUser.url,
+            "habitat": $scope.selectedHabitat.url
           }
-        }).success(res => {
-          if (res.success === true) {
-              $location.path('/tickets');
-          } else {
-              // Show dialog element telling user that registration failed
-          }
-        }).error(() => {
-          // Show dialog element telling user that registration failed
-        });
-
+        })
+        .success(res => res.success ? $location.path('/tickets') : null)
+        .error(console.error);
       }
 
     }

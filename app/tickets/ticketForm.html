@@ -1,12 +1,22 @@
+<h1>Ticket Purchase</h1>
+
 <article>
   <section>
     <div>Habitat</div>
-    <select ng-options="habitat as habitat.name for habitat in habitats track by habitat.id" ng-model="selectedHabitat"></select>
+    <select ng-options="habitat as habitat.name
+                        for habitat in habitats
+                        track by habitat.id"
+            ng-model="selectedHabitat"></select>
   </section>
   <section>
     <div>User</div>
-    <select ng-options="user as user.username for user in users track by user.id" ng-model="selectedUser"></select>
+    <select ng-options="user as user.username
+                        for user in users
+                        track by user.id"
+            ng-model="selectedUser"></select>
   </section>
 </article>
 
-<button ng-click="purchase()">Purchase Ticket</button>
+<p>
+  <button ng-click="purchase()">Purchase Ticket</button>
+</p>
