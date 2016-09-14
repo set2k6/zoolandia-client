@@ -1,0 +1,7 @@
+<h1>{{ title }}</h1>
+
+<ul>
+    <li ng-repeat="resource in tickets">
+        <a href="/#/tickets/{{resource.id}}">{{ resource.purchased | date }}</a>
+    </li>
+</ul>
